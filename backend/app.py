@@ -8,7 +8,11 @@ from typing import Dict, List, Optional
 import os
 import sys
 import logging
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Configuração de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -30,6 +34,12 @@ except ImportError as e:
         return {"resposta": "Erro no servidor. Chat não disponível."}
 
 app = FastAPI(title="AutoU Email Classifier API", version="1.0.0")
+
+FRONTEND_DIST = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_DIST.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="frontend")
+else:
+    logger.info("Frontend build não encontrado em %s — será necessário construir o frontend.", FRONTEND_DIST)
 
 app.add_middleware(
     CORSMiddleware,

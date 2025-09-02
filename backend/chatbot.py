@@ -3,6 +3,9 @@ import logging
 from typing import List, Dict
 import google.generativeai as genai
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Configuração da API do Google
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if GOOGLE_API_KEY:

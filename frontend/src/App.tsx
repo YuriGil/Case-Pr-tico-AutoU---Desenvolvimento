@@ -133,16 +133,8 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>📧 Classificação de Emails - AutoU</h1>
-        <p>Automatize a classificação e resposta de emails com IA</p>
       </header>
-      
-      <button 
-        className="chat-toggle"
-        onClick={() => setChatActive(!chatActive)}
-      >
-        {chatActive ? "✕ Fechar Assistente" : "💬 Abrir Assistente"}
-      </button>
-      
+      <div></div>
       {chatActive && (
         <div className="chat-container">
           <div className="chat-header">
@@ -253,10 +245,18 @@ function App() {
             </div>
           </div>
         )}
+          
       </div>
+        <div className="botão">
+           <button 
+        className="chat-toggle"
+        onClick={() => setChatActive(!chatActive)}
+      >
+        {chatActive ? "✕ Fechar Assistente" : "💬 Abrir Assistente"}
+      </button>
+        </div>
 
-      <footer className="app-footer">
-        <p>AutoU Email Classifier - Desenvolvido com FastAPI, React e IA Generativa</p>
+    <footer className="app-footer">
       </footer>
     </div>
   );
